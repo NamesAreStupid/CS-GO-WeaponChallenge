@@ -1,0 +1,32 @@
+{
+	"pistols" : [	"glock, usp, p2000", 
+					"p250", 
+					"tec-9, fiveseven, cs-75",
+					"dual-elite",
+					"deagle"
+	],
+	"heavy" : [		"nova",
+					"sawed-off, mag-7",
+					"xm1014",
+					"m249",
+					"negev"
+	],
+	"smg" : [		"mac-10, mp9",
+					"pp-bizon",
+					"ump-45",
+					"mp-7",
+					"p90"
+	],
+	"rifle" : [		"galil, famas" ,
+					"scout",
+					"ak, m4",
+					"awp",
+					"auto sniper"
+	],
+	"nades" : [		"he",
+					"incindiary"
+	],
+	"gear" : [		"zeus",
+					"knife"
+	]
+}
