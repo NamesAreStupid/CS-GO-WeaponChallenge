@@ -49,7 +49,7 @@ module.exports = {
 			remove(elementsToRemove[i], array);
 		}
 		*/
-		forEach(function(element){remove(element, array);}, elementsToRemove);
+		forEach(elementsToRemove, function(element){remove(element, array);});
 	},
 
 	/**
@@ -74,10 +74,61 @@ module.exports = {
 	},
 
 	/**
+	 * Returns all elements from an array that satisfy the filters.
+	 * Allows the usage of multiple filters.
+	 * Returns an empty array if none satisfy the filter.
+	 * The filter function has to be like function(element) 
+	 * and returns true if the filter is satisfied and  false if it is not.
+	 */
+	 //TODO: Test
+	filterVariable: function(filter, array) {
+		var filteredArray = [];
+
+		/*
+		for(e in array) {
+			var isAllowed = true;
+			for(f in filter) {
+				if(filter[f](array[e]) === false) {
+					isAllowed = false;
+					break;
+				}
+			}
+			if(isAllowed) {
+				filteredArray.push(array[e]);
+			}
+		}
+		*/
+
+		forEach(array, function(){
+			var isAllowed = true;
+			/*
+			for(f in filter) {
+				if(filter[f](array[e]) === false) {
+					isAllowed = false;
+					break;
+				}
+			}
+			*/
+			forEach(filter, function(){
+				if(filter[f](array[e]) === false) {
+					isAllowed = false;
+					break;
+				}
+			});
+			if(isAllowed) {
+				filteredArray.push(array[e]);
+			}
+		});
+
+		return filteredArray;
+
+	},
+
+	/**
 	 * Executes the given function for all elements of the array.
 	 */
 	//TODO: Test
-	forEach: function(lambda, array) {
+	forEach: function(array, lambda) {
 		for(i in array) {
 			lambda(array[i]);
 		}
