@@ -1,7 +1,7 @@
 // load http module
-var http = require("http");
+var http = require('http');
 var port = 8081;
-var arrays = require("Arrays.js");
+var arrays = require('./../Util/Arrays.js');
 var fs = require('fs');
 
 
@@ -26,7 +26,7 @@ var weaponLeft = function(weaponList, usedList) {
 	}
 };
 
-var filter = function(weapon, user) {
+var filter = function(element) {
 	if(!arrays.inArray(weapon, user.usedList) 
 		//&&
 		//inArray(user.faction, weapon.factions) &&
@@ -37,15 +37,46 @@ var filter = function(weapon, user) {
 	return false;
 };
 
+var filter = function(user) {
+	var isNotUsed = function(element) {
+		if(arrays.inArray(element)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+}
+
+var filterWeapons = function(weapons, user) {
+	var weaponsArray =  new Array(weapons);
+
+	//remove used weapons
+	weaponsArray = weaponsArray.filter(function(element) {
+		return !(arrays.inArray(user.usedList, element));
+	});
+	//remove wrong faction
+	weaponsArray = weaponsArray.filter(function(element) {
+		return arrays.inArray(element.factions, user.faction);
+	});
+	//remove too expansive
+	weaponsArray = weaponsArray.filter(function(element) {
+		return (element.price >= user.money);
+	});
+
+	return weaponsArray;
+}
+
+
 //create Server
 http.createServer(function(request, response) {
 	var message;
 	//if the user used all weapons the game is over!
 	if(user.usedList.length != weapons.length) {	
-		//Select nxt weapon
+		var filteredWeapons = filterWeapons(weapons, user);
+		//Select next weapon
 		var weapon;
 		do{
-			var index = parseInt(Math.random()*weapons.length);
+			var index = parseInt(Math.random()*filteredWeapons.length);
 			weapon = weapons[index];
 		} while(!filter(weapon, user));
 		user.usedList.push(weapon);

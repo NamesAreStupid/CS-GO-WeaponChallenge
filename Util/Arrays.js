@@ -6,33 +6,8 @@ module.exports = {
 	/**
 	 * Checks if a given element is contained in the array.
 	 */
-	//TODO: Test
-	inArray: function(element, array) {
-		for( i in array) {
-			if(array[i] === element) {
-				return true;
-			}
-		}
-		/*
-		forEach(function(e){
-			if(e === element) {
-				return true;
-			}
-		});
-		*/
-		return false;
-	},
-
-	/**
-	 * Removes the given element from the array.
-	 * @return true, if the element was contained in the array.
-	 * 		   false, if the element was not contained in the array.
-	 */
-	//TODO: Test
-	remove: function(element, array) {
-		var index = array.indexOf(object);
-		if(index >=0) {
-			array.splice(object);
+	inArray: function(array, element) {
+		if(array.indexOf(element) >= 0 ) {
 			return true;
 		} else {
 			return false;
@@ -40,16 +15,33 @@ module.exports = {
 	},
 
 	/**
+	 * Removes the given element from the array.
+	 * @return true, if the element was contained in the array.
+	 * 		   false, if the element was not contained in the array.
+	 */
+	remove: function(array, element) {
+		var index = array.indexOf(element);
+		if(index > -1) {
+			array.splice(index, 1);
+			return true;
+		} 
+		return false;
+	},
+
+	/**
 	 * Removes all given elements from the array.
 	 */
-	//TODO: Test
-	removeAll: function(elementsToRemove, array) {
+	removeAll: function(array, elementsToRemove) {
 		/*
 		for(i in elementsToRemove) {
 			remove(elementsToRemove[i], array);
 		}
 		*/
-		forEach(elementsToRemove, function(element){remove(element, array);});
+
+		var remove = this.remove;
+		this.forEach(elementsToRemove, function(element){
+			remove(array, element);
+		});
 	},
 
 	/**
@@ -59,7 +51,7 @@ module.exports = {
 	 * and returns true if the filter is satisfied and  false if it is not.
 	 */
 	 //TODO: Test
-	filter: function(filter, array) {
+	filter: function(array, filter) {
 		var filteredArray = [];
 		
 		var lambda = function(element) {
@@ -68,7 +60,7 @@ module.exports = {
 			}
 		};
 
-		forEach(lambda, array);
+		this.forEach(array, lambda);
 
 		return filteredArray;
 	},
@@ -81,7 +73,11 @@ module.exports = {
 	 * and returns true if the filter is satisfied and  false if it is not.
 	 */
 	 //TODO: Test
-	filterVariable: function(filter, array) {
+	filterMultiple: function(array, filters) {
+		//obtain filters from the arguments array
+		var argArray = Array.prototype.slice.call(arguments);
+		var filter = argArray.slice(1);
+
 		var filteredArray = [];
 
 		/*
@@ -99,8 +95,11 @@ module.exports = {
 		}
 		*/
 
-		forEach(array, function(){
+		var forEach = this.forEach;
+		this.forEach(array, function(arrayElement){
+			console.log(arrayElement)
 			var isAllowed = true;
+
 			/*
 			for(f in filter) {
 				if(filter[f](array[e]) === false) {
@@ -109,14 +108,15 @@ module.exports = {
 				}
 			}
 			*/
-			forEach(filter, function(){
-				if(filter[f](array[e]) === false) {
+			forEach(filter, function(filterElement){
+				if(filterElement(arrayElement) === false) {
 					isAllowed = false;
-					break;
+					return false;
 				}
+				return true;
 			});
 			if(isAllowed) {
-				filteredArray.push(array[e]);
+				filteredArray.push(arrayElement);
 			}
 		});
 
@@ -125,12 +125,14 @@ module.exports = {
 	},
 
 	/**
-	 * Executes the given function for all elements of the array.
+	 * Executes the given function for all elements of the array. 
+	 * Stops Execution if lambda function returns false.
 	 */
-	//TODO: Test
 	forEach: function(array, lambda) {
 		for(i in array) {
-			lambda(array[i]);
+			if(lambda(array[i]) === false ) {
+				break;
+			}
 		}
 	}
 };
