@@ -7,11 +7,28 @@ module.exports = {
 	 * Checks if a given element is contained in the array.
 	 */
 	inArray: function(array, element) {
+		//console.log("array: " + array);
+		//console.log("element: " + element);
 		if(array.indexOf(element) >= 0 ) {
 			return true;
 		} else {
 			return false;
 		}
+	},
+
+	/**
+	 * Finds the first value in the array that satisfies the finder function.
+	 * Oterhwise it returns undefined.
+	 */
+	find: function(array, finder) {
+		var found = undefined;
+		for(i in array) {
+			if(finder(array[i])) {
+				found = array[i];
+				break;
+			}
+		}
+		return found;
 	},
 
 	/**

@@ -17,6 +17,14 @@ describe("Arrays.js", function() {
 		});
 	});
 
+	describe("find", function() {
+		it("should find the element in the array", function() {
+			expect(element = arrays.find(array, function(element) {
+				return element === "Cat";
+			})).toEqual("Cat");
+		});
+	});
+
 	describe("remove", function() {
 		it("should remove an existing element from the array", function() {
 			arrays.remove(array, "Fish");

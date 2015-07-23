@@ -11,7 +11,7 @@ arrays.forEach(array, function(element) {
 */
 
 var array = ["Cat", "Dog", "Fish"];
-
+/*
 var dogFilter = function(element) {
 	if(element != "Dog") {
 		return true;
@@ -26,7 +26,20 @@ var catFilter = function(element) {
 		return false;
 	}
 };
+
 var newArray = arrays.filterMultiple(array, dogFilter, catFilter);
 
 //var newArray = array.slice(1);
 console.log(newArray);
+
+*/
+/*
+var found = new Array(array).find(function(element) {
+	return element === "Cat";
+});
+
+console.log(found);
+*/
+array.forEach(function(element) {
+	console.log(element);
+});
