@@ -1,0 +1,41 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+	<title>CS-GO: Weapon Challenge</title>
+	<script type="text/javascript" src="../angular/angular.min.js"></script>
+	<script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.submit').click(function() {
+				console.log("the click worked.");
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>CS-GO: Weapon Challenge</h1>
+	<div class="left">
+		<div class="main">
+			<p id="weapon-name"></p>
+			<p id="weapon-type"></p>
+			<p id="weapon-factions"></p>
+			<p id="weapon-price"></p>
+		</div>
+		<div class="controls">
+			<form name="user-input">
+				<input type="checkbox" name="filter-used">Filter used weapons<br>
+				<input type="checkbox" name="filter-faction">Filter faction: 
+				<input type="radio" name="faction">T
+				<input type="radio" name="faction">CT<br>
+				<input type="checkbox" name="filter-price">Filter too expansive weapons: 
+				<input type="text" value="16000"><br>
+				<input type="button" class="submit" value="Submit">
+			</form>
+		</div>
+	</div>
+	<div class="right">
+		<div class="weapon-list"></div>
+	</div>
+
+	</body>
+</html>

@@ -3,6 +3,8 @@ var http = require('http');
 var port = 8081;
 var arrays = require('./../Util/Arrays.js');
 var fs = require('fs');
+var express = require('express');
+var app = express();
 
 
 var weapons = JSON.parse(fs.readFileSync('WeaponsNew.json', 'utf8'));
@@ -54,6 +56,23 @@ var filterWeapons = function(weapons, user) {
 
 	return weaponsArray;
 }
+
+//app.get('/', )
+
+app.get('/test', function(req, res) {
+	console.log(req);
+	res.send('received');
+});
+
+app.use(express.static('../node_modules'));
+app.use(express.static('./'));
+
+var server = app.listen(3000, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Example app listening at http://%s:%s', host, port);
+});
 
 //create Server
 http.createServer(function(request, response) {
