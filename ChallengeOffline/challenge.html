@@ -2,49 +2,63 @@
 <html>
 <head>
 	<title>CS-GO: Weapon Challenge</title>
-	<script type="text/javascript" src="../angular/angular.min.js"></script>
-	<script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.submit').click(function() {
 				console.log("the click worked.");
+			});
+			var types = [];
+			arrays.forEach(weapons, function(e) {
+				tmpType = e.type;
+				if(!arrays.inArray(types, tmpType)) {
+					types.push(tmpType);
+				}
 			});
 		});
 	</script>
 	<script type="text/javascript" src="challenge.js"></script>
 	<script type="text/javascript" src="weapons.js"></script>
 	<script type="text/javascript" src="Arrays.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="mainController.js"></script>
+
 
 
 </head>
 <body>
-	<h1>CS-GO: Weapon Challenge</h1>
-	<div class="left" ng-app="csgo">
-		<div class="main">
-			<p id="weapon-name"></p>
-			<p id="weapon-type"></p>
-			<p id="weapon-factions"></p>
-			<p id="weapon-price"></p>
+	<div class="main" ng-app="myApp" ng-controller="mainController">
+		<h1>CS-GO: Weapon Challenge</h1>
+		<div class="left">
+			<div class="main">
+				<p id="weapon-name"></p>
+				<p id="weapon-type"></p>
+				<p id="weapon-factions"></p>
+				<p id="weapon-price"></p>
+			</div>
+			<div class="controls">
+				<form name="user-input">
+					<input type="checkbox" name="filter-used">Filter used weapons<br>
+					<input type="checkbox" name="filter-faction">Filter faction: 
+					<input type="radio" name="faction" checked="checked">T
+					<input type="radio" name="faction">CT<br>
+					<!--
+					<input type="checkbox" name="filter-T">Filter Terrorist: <br>
+					<input type="checkbox" name="filter-CT">Filter CT: <br>
+					<input type="checkbox" name="filter-price">Filter too expansive weapons: <br>
+					-->
+					<input type="text" ng-model="user.money"><br><br>
+					<p>{{user.money}}</p>
+					<input type="button" class="submit" value="Next" onclick="nextWeapon()">
+				</form>
+			</div>
 		</div>
-		<div class="controls">
-			<form name="user-input">
-				<input type="checkbox" name="filter-used">Filter used weapons<br>
-				<input type="checkbox" name="filter-faction">Filter faction: 
-				<input type="radio" name="faction" checked="checked">T
-				<input type="radio" name="faction">CT<br>
-				<!--
-				<input type="checkbox" name="filter-T">Filter Terrorist: <br>
-				<input type="checkbox" name="filter-CT">Filter CT: <br>
-				<input type="checkbox" name="filter-price">Filter too expansive weapons: <br>
-				-->
-				<input type="text" value="16000"><br><br>
-				<input type="button" class="submit" value="Next" onclick="nextWeapon()">
-			</form>
+		<div class="right">
+			<div class="weapon-list" ng-repeat="weapon in weapons">
+				<p>{{weapon.name}}</p>
+			</div>
 		</div>
 	</div>
-	<div class="right">
-		<div class="weapon-list"></div>
-	</div>
-
-	</body>
+</body>
 </html>
