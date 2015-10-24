@@ -2,6 +2,9 @@
 <html>
 <head>
 	<title>CS-GO: Weapon Challenge</title>
+
+	<link rel="stylesheet" href="challenge.css">
+
 	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
 	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -58,6 +61,7 @@
 					<br><br>
 					<p>{{user.faction}}</p>
 					<input type="button" class="submit" value="Next" ng-click="nextWeapon()">
+					<input type="button" class="submit" value="Skip" ng-click="skip()">
 				</form>
 			</div>
 		</div>

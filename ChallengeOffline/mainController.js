@@ -2,6 +2,7 @@ app.controller('mainController', ['$scope', function ($scope) {
 	$scope.money='800';
 
 	$scope.user = {
+		weapons;
 		usedWeapons : [],
 		faction : "ct",
 		money : 800,
@@ -20,22 +21,36 @@ app.controller('mainController', ['$scope', function ($scope) {
 			price: 200
 		},
 
+		getIncludedWeapons: function() {
+
+		},
+
 		setNextWeapon: function(weapon) {
-			this.usedWeapons.push(this.currentWeapon);
+			this.usedWeapons.push(weapon);
 			this.currentWeapon = weapon;
 		},
-		setCurrentWeapon: function(weapon) {
-			this.currentWeapon = weapon;
+		setNewCurrentWeapon: function(weapon) {
+			arrays.remove(this.usedWeapons, this.currentWeapon);
+			this.setNextWeapon(weapon);
 		}
 	};
 	$scope.weapons = weapons;
 
-	/*
 	$scope.nextWeapon = function() {
-		console.log($scope.user);
-	};
-	*/
+		//TODO: Insert propper error hierarchie, inherited from error.prototype? This seems sufficient though
+		try {
+			$scope.user.setNextWeapon(nextWeapon($scope.user));
+		} catch(e) {
+			alert(e.message);
+		}		
+	}
 
-	$scope.nextWeapon = $scope.user.setNextWeapon(nextWeapon($scope.user));
+	$scope.skip = function() {
+		try {
+			$scope.user.setNewCurrentWeapon(nextWeapon($scope.user));
+		} catch(e) {
+			alert(e.message);
+		}	
+	}
 
 }]);

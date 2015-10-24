@@ -97,29 +97,24 @@ var filterWeapons = function(weapons, user) {
 	return weaponsArray;
 };
 
-var nextWeapon = function(user) {
-		console.log(user);
-	var tmpWeapon = {
-		name: "",
-		type: "",
-		factions: [],
-		price: ""
-	};
+var nextWeapon = function(user, weapons) {
 	//if the user used all weapons the game is over!
 	if(user.usedWeapons.length != weapons.length) {	
 		var filteredWeapons = filterWeapons(weapons, user);
 
 		if(filteredWeapons.length > 0) {
 			var weapon = filteredWeapons[parseInt(Math.random()*filteredWeapons.length)];
-			user.setNextWeapon(weapon);
+			//user.setNextWeapon(weapon);
 			//message = weapon.name +"\n"+ weapon.type +"\n"+ weapon.factions +"\n"+ weapon.price + "$";
 		} else {
-			tmpWeapon.name = "All other weapons ruled out!"
-			user.setNextWeapon(tmpWeapon);
+			throw {name: "ruledOut", message: "All other weapons ruled out!"}
+			//tmpWeapon.name = "All other weapons ruled out!"
+			//user.setNextWeapon(tmpWeapon);
 		}
 	} else {
-		tmpWeapon.name = "All Weapons used! You beat the GAMEEEEEE!!!!!11";
-		user.setNextWeapon(tmpWeapon);
+		throw {name: "allUsed", message: "All Weapons used! You beat the GAMEEEEEE!!!!!11"}
+		//tmpWeapon.name = "All Weapons used! You beat the GAMEEEEEE!!!!!11";
+		//user.setNextWeapon(tmpWeapon);
 	}
 	return weapon;
 };
