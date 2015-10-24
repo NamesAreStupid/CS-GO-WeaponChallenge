@@ -67,7 +67,10 @@
 		</div>
 		<div class="right">
 			<div class="weapon-list" ng-repeat="weapon in user.weapons">
+				<!--
 				<p>{{weapon.name}}</p>
+				-->
+				<weaponWidget info="weapon"></weaponWidget>
 			</div>
 		</div>
 	</div>
