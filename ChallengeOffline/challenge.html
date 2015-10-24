@@ -5,6 +5,7 @@
 	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
 	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript">
+		/*
 		$(document).ready(function() {
 			$('.submit').click(function() {
 				console.log("the click worked.");
@@ -17,6 +18,7 @@
 				}
 			});
 		});
+		*/
 	</script>
 	<script type="text/javascript" src="challenge.js"></script>
 	<script type="text/javascript" src="weapons.js"></script>
@@ -34,10 +36,10 @@
 		<h1>CS-GO: Weapon Challenge</h1>
 		<div class="left">
 			<div class="main">
-				<p id="weapon-name"></p>
-				<p id="weapon-type"></p>
-				<p id="weapon-factions"></p>
-				<p id="weapon-price"></p>
+				<p id="weapon-name">{{user.currentWeapon.name}}</p>
+				<p id="weapon-type">{{user.currentWeapon.type}}</p>
+				<p id="weapon-factions">{{user.currentWeapon.factions}}</p>
+				<p id="weapon-price">{{user.currentWeapon.price}}</p>
 			</div>
 			<div class="controls">
 				<form name="user-input">
@@ -55,7 +57,7 @@
 					<label>Current Money: <input type="text" ng-model="user.money"></label>
 					<br><br>
 					<p>{{user.faction}}</p>
-					<input type="button" class="submit" value="Next" onclick="nextWeapon()">
+					<input type="button" class="submit" value="Next" ng-click="nextWeapon()">
 				</form>
 			</div>
 		</div>

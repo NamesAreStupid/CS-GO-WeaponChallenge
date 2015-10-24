@@ -179,7 +179,7 @@ var weapons = [
 		"name": "zeus",
 		"type": "misc",
 		"factions": ["ct", "t"],
-		"price": 400
+		"price": 200
  	},
 	{
 		"name": "knife",
