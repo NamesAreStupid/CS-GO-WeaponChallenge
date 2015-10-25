@@ -105,8 +105,4 @@ app.controller('mainController', ['$scope', function ($scope) {
 
 	$scope.user.initializeWeapons(weapons);
 	$scope.user.currentWeapon = $scope.user.weapons[0];
-	user = $scope.user;
 }]);
-
-//TODO: Debug code. remove!
-var user;
