@@ -17,6 +17,7 @@ var filterWeapons = function(weapons, user) {
 		return element.included;
 	});
 
+	//execute other filters
 	if(user.filterUsed === true) {
 		weaponsArray = weaponsArray.filter(function(element) {
 			//return !(arrays.inArray(this.user.usedWeapons, element))
