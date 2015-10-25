@@ -14,8 +14,9 @@ app.controller('mainController', ['$scope', function ($scope) {
 		filterPrice : true,
 		filterType : [],
 		filterCustom : [],
-
-		currentWeapon: weapons[0],
+		
+		currentWeapon : {},
+		//: weapons[0],
 		/*
 		currentWeapon: {
 			name: "usp/p2000",
@@ -79,25 +80,23 @@ app.controller('mainController', ['$scope', function ($scope) {
 
 		setNextWeapon: function(weapon) {
 			this.usedWeapons.push(weapon);
+			weapon.used=true;
+			this.currentWeapon.used=true;
 			this.currentWeapon = weapon;
 		},
 		setNewCurrentWeapon: function(weapon) {
 			arrays.remove(this.usedWeapons, this.currentWeapon);
+			this.currentWeapon.used=false;
 			this.setNextWeapon(weapon);
 		}
 	};
-
-
-	$scope.user.weapons = weapons;
-
-	$scope.weapons = weapons;
 
 	$scope.nextWeapon = function() {
 		//TODO: Insert propper error hierarchie, inherited from error.prototype? This seems sufficient though
 		try {
 			$scope.user.setNextWeapon(nextWeapon($scope.user));
 		} catch(e) {
-			alert(e.message);
+			alert(e.message, e.stack);
 		}		
 	}
 
@@ -105,9 +104,14 @@ app.controller('mainController', ['$scope', function ($scope) {
 		try {
 			$scope.user.setNewCurrentWeapon(nextWeapon($scope.user));
 		} catch(e) {
-			alert(e.message);
+			alert(e.message, e.stack);
 		}
 	}
 
 	$scope.user.initializeWeapons(weapons);
+	$scope.user.currentWeapon = $scope.user.weapons[0];
+	user = $scope.user;
 }]);
+
+//TODO: Debug code. remove!
+var user;

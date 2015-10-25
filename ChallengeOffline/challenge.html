@@ -5,37 +5,22 @@
 
 	<link rel="stylesheet" href="challenge.css">
 
+	<!-- Dependencies: DO NOT REMOVE! -->
 	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
 	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript">
-		/*
-		$(document).ready(function() {
-			$('.submit').click(function() {
-				console.log("the click worked.");
-			});
-			var types = [];
-			arrays.forEach(weapons, function(e) {
-				tmpType = e.type;
-				if(!arrays.inArray(types, tmpType)) {
-					types.push(tmpType);
-				}
-			});
-		});
-		*/
-	</script>
-	<script type="text/javascript" src="challenge.js"></script>
-	<script type="text/javascript" src="weapons.js"></script>
+	<!-- Auxiliary Scripts: Dependencies! DO NOT REMOVE! -->
 	<script type="text/javascript" src="Arrays.js"></script>
-
+	<!-- Angular App -->
 	<script type="text/javascript" src="app.js"></script>
 	<script type="text/javascript" src="mainController.js"></script>
-
-
-
+	<script type="text/javascript" src="challenge.js"></script>
+	<script type="text/javascript" src="weapons.js"></script>
+	<!-- Directives -->
+	<script type="text/javascript" src="weaponWidget.js"></script>
 
 </head>
-<body ng-app="myApp">
-	<div class="main" ng-controller="mainController">
+<body ng-app="myApp" ng-controller="mainController">
+	<div class="main">
 		<h1>CS-GO: Weapon Challenge</h1>
 		<div class="left">
 			<div class="main">
@@ -57,20 +42,38 @@
 					<input type="checkbox" name="filter-CT">Filter CT: <br>
 					<input type="checkbox" name="filter-price">Filter too expansive weapons: <br>
 					-->
-					<label>Current Money: <input type="text" ng-model="user.money"></label>
+					<label>
+						<input type="checkbox" ng-model="user.filterPrice">
+						Filter Money: 
+						<input type="text" ng-model="user.money">
+					</label>
 					<br><br>
 					<p>{{user.faction}}</p>
 					<input type="button" class="submit" value="Next" ng-click="nextWeapon()">
 					<input type="button" class="submit" value="Skip" ng-click="skip()">
 				</form>
+				<p>glock used: {{user.weapons[0]}}</p>
+				<p>glock included: {{user.weapons[0].included}}</p>
+
+
 			</div>
 		</div>
 		<div class="right">
 			<div class="weapon-list" ng-repeat="weapon in user.weapons">
 				<!--
 				<p>{{weapon.name}}</p>
-				-->
 				<weaponWidget info="weapon"></weaponWidget>
+				-->
+				<weapon-widget></weapon-widget>
+					<!-- Template: For local use because cross site ajax... -->
+					<script type="text/ng-template" id="weaponWidget.html">
+						<div class="weaponWidget">
+							{{weapon.name}}<br>
+							<label><input type="checkbox" ng-model="weapon.used">used</label> | 
+							<label><input type="checkbox" ng-model="weapon.included">include</label>
+							</p>
+						</div>
+					</script>
 			</div>
 		</div>
 	</div>

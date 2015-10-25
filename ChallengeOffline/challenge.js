@@ -97,9 +97,9 @@ var filterWeapons = function(weapons, user) {
 	return weaponsArray;
 };
 
-var nextWeapon = function(user, weapons) {
+var nextWeapon = function(user) {
 	//if the user used all weapons the game is over!
-	if(user.usedWeapons.length != weapons.length) {	
+	if(user.usedWeapons.length != user.weapons.length) {	
 		var filteredWeapons = filterWeapons(weapons, user);
 
 		if(filteredWeapons.length > 0) {

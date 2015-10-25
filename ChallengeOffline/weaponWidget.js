@@ -1,9 +1,7 @@
 app.directive('weaponWidget', function() { 
   return { 
-    restrict: 'E',
-    scope: { 
-      info: '=' 
-    }, 
-    templateUrl: 'weaponWidget.html' 
+    //restrict: 'E',
+    //scope: { info: '=' },
+    templateUrl: 'weaponWidget.html'
   }; 
 });
