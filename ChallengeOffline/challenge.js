@@ -70,7 +70,8 @@ var filterWeapons = function(weapons, user) {
 
 	if(user.filterUsed === true) {
 		weaponsArray = weaponsArray.filter(function(element) {
-			return !(arrays.inArray(user.usedWeapons, element))
+			//return !(arrays.inArray(this.user.usedWeapons, element))
+			return !element.used;
 		});
 	}
 	if(user.filterFaction) {
@@ -99,8 +100,8 @@ var filterWeapons = function(weapons, user) {
 
 var nextWeapon = function(user) {
 	//if the user used all weapons the game is over!
-	if(user.usedWeapons.length != user.weapons.length) {	
-		var filteredWeapons = filterWeapons(weapons, user);
+	if(user.getUsedWeapons.length != user.weapons.length) {	
+		var filteredWeapons = filterWeapons(user.weapons, user);
 
 		if(filteredWeapons.length > 0) {
 			var weapon = filteredWeapons[parseInt(Math.random()*filteredWeapons.length)];

@@ -34,7 +34,7 @@ app.controller('mainController', ['$scope', function ($scope) {
 			//$scope.nextWeapon();
 		},
 
-		getusedWeapons: function() {
+		getUsedWeapons: function() {
 			var usedWeapons = [];
 			for(w in this.weapons) {
 				if(this.weapons[w].used) {
