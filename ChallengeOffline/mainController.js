@@ -1,7 +1,5 @@
 app.controller('mainController', ['$scope', function ($scope) {
 
-	$scope.money='800';
-
 	$scope.user = user;
 
 	$scope.nextWeapon = function() {
