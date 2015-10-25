@@ -79,15 +79,15 @@ app.controller('mainController', ['$scope', function ($scope) {
 		},
 
 		setNextWeapon: function(weapon) {
-			this.usedWeapons.push(weapon);
-			weapon.used=true;
+			this.usedWeapons.push(this.currentWeapon);
+			//weapon.used=true;
 			this.currentWeapon.used=true;
 			this.currentWeapon = weapon;
 		},
-		setNewCurrentWeapon: function(weapon) {
-			arrays.remove(this.usedWeapons, this.currentWeapon);
-			this.currentWeapon.used=false;
-			this.setNextWeapon(weapon);
+		skipWeapon: function(weapon) {
+			//arrays.remove(this.usedWeapons, this.currentWeapon);
+			//this.currentWeapon.used=false;
+			this.currentWeapon = weapon;
 		}
 	};
 
@@ -102,7 +102,7 @@ app.controller('mainController', ['$scope', function ($scope) {
 
 	$scope.skip = function() {
 		try {
-			$scope.user.setNewCurrentWeapon(nextWeapon($scope.user));
+			$scope.user.skipWeapon(nextWeapon($scope.user));
 		} catch(e) {
 			alert(e.message, e.stack);
 		}
