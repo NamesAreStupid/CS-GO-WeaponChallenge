@@ -4,7 +4,6 @@ app.controller('mainController', ['$scope', function ($scope) {
 
 	$scope.user = {
 		weapons,
-		usedWeapons : [],
 		faction : "ct",
 		money : 800,
 
@@ -79,14 +78,10 @@ app.controller('mainController', ['$scope', function ($scope) {
 		},
 
 		setNextWeapon: function(weapon) {
-			this.usedWeapons.push(this.currentWeapon);
-			//weapon.used=true;
 			this.currentWeapon.used=true;
 			this.currentWeapon = weapon;
 		},
 		skipWeapon: function(weapon) {
-			//arrays.remove(this.usedWeapons, this.currentWeapon);
-			//this.currentWeapon.used=false;
 			this.currentWeapon = weapon;
 		}
 	};
