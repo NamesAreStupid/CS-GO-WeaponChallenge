@@ -1,17 +1,3 @@
-/*
-var user = {
-	usedWeapons : [],
-	faction : "ct",
-	money : 16000,
-
-	//config Rules for filtering
-	filterUsed : true,
-	filterFaction : true,
-	filterPrice : true,
-	filterType : [],
-	filterCustom : []
-};
-*/
 
 var weaponLeft = function(weaponList, usedList) {
 	var weaponLeft = false;
@@ -21,48 +7,6 @@ var weaponLeft = function(weaponList, usedList) {
 	}
 
 };
-
-/*
-//Define Rules as filters
-var filterUsed = function(element) {
-		return !(arrays.inArray(user.usedWeapons, element));
-	};
-var filterFaction = function(element) {
-		return (element.factions.indexOf(user.faction) >= 0);
-	};
-var filterPrice = function(element) {
-		return (element.price <= user.money);
-	};
-var filterType = function(element) {
-		return (arrays.inArray(user.filterType, element.type));
-	};
-var filterCustom = function(element) {
-		return (arrays.inArray(user.filterCustom, element.name));
-	};
-
-//Use filters to rule out weapons
-var filterWeapons = function(weapons, user) {
-	var weaponsArray =  weapons.slice(0);
-
-	if(user.filterUsed === true) {
-		weaponsArray = weaponsArray.filter(filterUsed);
-	}
-	if(user.filterFaction) {
-		weaponsArray = weaponsArray.filter(filterFaction);
-	}
-	if(user.filterPrice) {
-		weaponsArray = weaponsArray.filter(filterPrice);
-	}
-	if(user.filterType != undefined && user.filterType.length > 0) {
-		weaponsArray = weaponsArray.filter(filterType);
-	}
-	if(user.filterCustom != undefined && user.filterCustom.length > 0) {
-		weaponsArray = weaponsArray.filter(filterCustom);
-	}
-
-	return weaponsArray;
-};
-*/
 
 //Use filters to rule out weapons
 var filterWeapons = function(weapons, user) {
