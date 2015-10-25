@@ -12,6 +12,11 @@ var weaponLeft = function(weaponList, usedList) {
 var filterWeapons = function(weapons, user) {
 	var weaponsArray =  weapons.slice(0);
 
+	//filter not included
+	weaponsArray = weaponsArray.filter(function(element) {
+		return element.included;
+	});
+
 	if(user.filterUsed === true) {
 		weaponsArray = weaponsArray.filter(function(element) {
 			//return !(arrays.inArray(this.user.usedWeapons, element))
