@@ -1,6 +1,6 @@
 var user = {
 	weapons,
-	faction : "ct",
+	faction : "t",
 	money : 800,
 
 	//config Rules for filtering
